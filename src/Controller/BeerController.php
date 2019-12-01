@@ -40,7 +40,7 @@ class BeerController extends AbstractFOSRestController
 
     /**
      * Get Beer detail
-     * @Rest\Get("/beer/detail/{id}")
+     * @Rest\Get("/beer/list/{id}")
      *
      * @param Request $request
      * @return Response
