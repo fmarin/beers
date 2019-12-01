@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
-use App\Domains\Beers\Application\GetBeerDetail;
-use App\Domains\Beers\Application\GetBeersByFood;
+use App\Domains\Beers\Application\GetList;
+use App\Domains\Beers\Application\Search;
 use App\Domains\Beers\Infrastructure\BeerRepositoryPunkApi;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +32,7 @@ class BeerController extends AbstractFOSRestController
         $food = $request->get('food');
 
         $apiRepository = new BeerRepositoryPunkApi();
-        $beerByFood = new GetBeersByFood($apiRepository);
+        $beerByFood = new Search($apiRepository);
         $content = $beerByFood($food);
 
         return $this->handleView($this->view($content));
@@ -50,7 +50,7 @@ class BeerController extends AbstractFOSRestController
         $id = $request->get('id');
 
         $apiRepository = new BeerRepositoryPunkApi();
-        $beerDetail = new GetBeerDetail($apiRepository);
+        $beerDetail = new GetList($apiRepository);
         $content = $beerDetail($id);
 
         return $this->handleView($this->view($content));

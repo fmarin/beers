@@ -18,7 +18,7 @@ class BeerRepositoryPunkApi implements BeerRepository
         $this->url = 'https://api.punkapi.com/v2/beers';
     }
 
-    public function getBeersByFood($food)
+    public function search($food)
     {
         $response = $this->client->request('GET', $this->url, [
             'query' => [
@@ -29,7 +29,7 @@ class BeerRepositoryPunkApi implements BeerRepository
         return $this->checkResponse($response);
     }
 
-    public function getBeerDetail($id)
+    public function getList($id)
     {
         $response = $this->client->request('GET', $this->url, [
             'query' => [
