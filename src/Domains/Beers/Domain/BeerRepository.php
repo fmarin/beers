@@ -6,8 +6,8 @@ namespace App\Domains\Beers\Domain;
 
 interface BeerRepository
 {
-    public function getBeersByFood($food);
+    public function search($food);
 
-    public function getBeerDetail($id);
+    public function getList($id);
 }
 

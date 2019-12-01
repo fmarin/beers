@@ -6,13 +6,16 @@ namespace App\Domains\Beers\Application;
 
 use App\Domains\Beers\Domain\BeerRepository;
 
-class GetBeersByFood
+class GetList
 {
     private $repository;
     private $outputFields = [
         'id',
         'name',
-        'description'
+        'description',
+        'image_url',
+        'tagline',
+        'first_brewed'
     ];
 
     public function __construct(BeerRepository $repository)
@@ -20,10 +23,10 @@ class GetBeersByFood
         $this->repository = $repository;
     }
 
-    public function __invoke($food)
+    public function __invoke($id)
     {
         $content = [];
-        $data = $this->repository->getBeersByFood($food);
+        $data = $this->repository->getList($id);
 
         if($data['success']){
             $beers = $data['beers'];

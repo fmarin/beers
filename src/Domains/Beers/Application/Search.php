@@ -6,16 +6,13 @@ namespace App\Domains\Beers\Application;
 
 use App\Domains\Beers\Domain\BeerRepository;
 
-class GetBeerDetail
+class Search
 {
     private $repository;
     private $outputFields = [
         'id',
         'name',
-        'description',
-        'image_url',
-        'tagline',
-        'first_brewed'
+        'description'
     ];
 
     public function __construct(BeerRepository $repository)
@@ -23,14 +20,17 @@ class GetBeerDetail
         $this->repository = $repository;
     }
 
-    public function __invoke($id)
+    public function __invoke($food)
     {
         $content = [];
-        $data = $this->repository->getBeerDetail($id);
+        $data = $this->repository->search($food);
 
         if($data['success']){
-            $beer = $data['beers'][0];
-            $content[] = array_intersect_key($beer, array_flip($this->outputFields));
+            $beers = $data['beers'];
+
+            foreach($beers as $beer){
+                $content[] = array_intersect_key($beer, array_flip($this->outputFields));
+            }
         }
 
         return $content;
