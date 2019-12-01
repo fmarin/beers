@@ -22,12 +22,12 @@ class BeerController extends AbstractFOSRestController
 {
     /**
      * Lists all Beers by food
-     * @Rest\Get("/beers/{food}")
+     * @Rest\Get("/beer/{food}")
      *
      * @param Request $request
      * @return Response
      */
-    public function getBeersByFoodAction(Request $request)
+    public function search(Request $request)
     {
         $food = $request->get('food');
 
@@ -39,13 +39,13 @@ class BeerController extends AbstractFOSRestController
     }
 
     /**
-     * Get Beer detail
+     * Get Beer List
      * @Rest\Get("/beer/list/{id}")
      *
      * @param Request $request
      * @return Response
      */
-    public function getBeerDetailAction(Request $request)
+    public function getList(Request $request)
     {
         $id = $request->get('id');
 
